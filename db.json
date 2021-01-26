@@ -1,5 +1,5 @@
 {
-  "bg": "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+  "bg": "/bg.jpg",
   "title": "Quiz Harry Potter",
   "description": "Teste os seus conhecimentos sobre o universo mágico de Harry Potter.",
   "questions": [
