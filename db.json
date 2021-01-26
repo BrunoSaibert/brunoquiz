@@ -1,0 +1,36 @@
+{
+  "bg": "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+  "title": "Quiz Harry Potter",
+  "description": "Teste os seus conhecimentos sobre o universo mágico de Harry Potter.",
+  "questions": [
+    {
+      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+      "title": "Como fazer um seletor por id via CSS?",
+      "description": "Essa é pra aquecer",
+      "answer": 2,
+      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+    },
+    {
+      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+      "title": "Como fazer um background gradiente com css?",
+      "description": "Faz tempo em haha",
+      "answer": 0,
+      "alternatives": [
+        "background: linear-gradient(#e66465, #9198e5);",
+        "background: gradient(#e66465, #9198e5);"
+      ]
+    }
+  ],
+  "external": [""],
+  "theme": {
+    "colors": {
+      "primary": "#fe5e2e",
+      "secondary": "#651fff",
+      "mainBg": "#16171b",
+      "contrastText": "#f7f5f6",
+      "wrong": "#f44336",
+      "success": "#4caf50"
+    },
+    "borderRadius": "4px"
+  }
+}
