@@ -6,17 +6,26 @@ function HeadContent({ title, description, bg }) {
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+      <meta name="title" content={title} />
+      <meta name="description" content={description} />
+
       <meta property="og:locale" content="pt_BR" />
+      <meta property="og:site_name" content="BrunoQuiz" />
 
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://brunoquiz.vercel.app/" />
       <meta property="og:title" content={title} />
-      <meta property="og:site_name" content="PatoQuiz" />
-
       <meta property="og:description" content={description} />
       <meta property="og:image" content={bg} />
-      <meta property="og:image:type" content="image/jpg" />
-      <meta property="og:image:width" content="1920" />
-      <meta property="og:image:height" content="1080" />
-      <meta property="og:type" content="website"></meta>
+
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content="https://brunoquiz.vercel.app/" />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content={bg}></meta>
     </Head>
   );
 }
