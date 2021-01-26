@@ -1,12 +1,12 @@
 import React from "react";
 
-import LogoContainer from "./styles";
+import { Container } from "./styles";
 
 function Logo() {
   return (
-    <LogoContainer>
+    <Container>
       <img src="logo.png" alt="Brunoquiz" />
-    </LogoContainer>
+    </Container>
   );
 }
 
