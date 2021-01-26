@@ -1,5 +1,4 @@
-import Head from "next/head";
-
+import HeadContent from "../src/components/HeadContent";
 import Logo from "../src/components/Logo";
 import QuizBackground from "../src/components/QuizBackground";
 import QuizContainer from "../src/components/QuizContainer";
@@ -12,11 +11,7 @@ import db from "../db.json";
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
-      <Head>
-        <title>{db.title}</title>
-        <meta property="og:title" content={db.title} key="title"></meta>
-        <meta property="og:image" content={db.bg} />
-      </Head>
+      <HeadContent title={db.title} bg={db.bg} description={db.description} />
 
       <QuizContainer>
         <Logo />
