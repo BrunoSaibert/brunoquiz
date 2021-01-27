@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
-const QuizBackground = styled.div`
+const QuizBackground = styled.div<{ backgroundImage: string }>`
   width: 100%;
   background-size: cover;
   background-position: center;
   background-image: url(${({ backgroundImage }) => backgroundImage});
-  background-color: ${({ theme }) => theme.colors.mainBg};
+  background-color: ${props => props.theme.color.mainBg};
   flex: 1;
   @media screen and (max-width: 500px) {
     background-image: none;
     &:after {
-      content: "";
+      content: '';
       background-size: cover;
       background-position: center;
       background-image: linear-gradient(
           transparent,
-          ${({ theme }) => theme.colors.mainBg}
+          ${props => props.theme.color.mainBg}
         ),
         url(${({ backgroundImage }) => backgroundImage});
       display: block;

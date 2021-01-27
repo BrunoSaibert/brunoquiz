@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import HeadContent from '../src/components/HeadContent';
-import Logo from '../src/components/Logo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import Widget from '../src/components/Widget';
-import GitHubCorner from '../src/components/GitHubCorner';
-import Footer from '../src/components/Footer';
-import Input from '../src/components/Input';
-import Button from '../src/components/Button';
+import HeadContent from '../components/HeadContent';
+import Logo from '../components/Logo';
+import QuizBackground from '../components/QuizBackground';
+import QuizContainer from '../components/QuizContainer';
+import Widget from '../components/Widget';
+import GitHubCorner from '../components/GitHubCorner';
+import Footer from '../components/Footer';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
-import db from '../db.json';
+import db from '../lib/db';
 
-export default function Home() {
+const Home: React.FC = () => {
   const router = useRouter();
 
   const [name, setName] = useState('');
 
-  const onSubmit = e => {
+  const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
 
     router.push(`/quiz?name=${name}`);
@@ -34,7 +34,7 @@ export default function Home() {
         <Widget header={<h1>{db.title}</h1>}>
           <p>{db.description}</p>
 
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit}>
             <Input
               placeholder="Informe seu nome"
               onChange={e => setName(e.target.value)}
@@ -58,4 +58,6 @@ export default function Home() {
       <GitHubCorner projectUrl="https://github.com/BrunoSaibert/brunoquiz" />
     </QuizBackground>
   );
-}
+};
+
+export default Home;

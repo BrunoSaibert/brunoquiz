@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.footer`
+export const Container = styled.footer`
   background-color: #00000070;
   padding: 20px;
   display: flex;
@@ -23,5 +23,3 @@ const Container = styled.footer`
     }
   }
 `;
-
-export default Container;

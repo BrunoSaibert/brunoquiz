@@ -1,12 +1,14 @@
-import React from 'react';
+import * as S from './styles';
 
-import { Wrapper, SVGWrapper } from './styles';
+interface Props {
+  projectUrl: string;
+}
 
-function GitHubCorner({ projectUrl }) {
+const GitHubCorner: React.VFC<Props> = ({ projectUrl }) => {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <a href={projectUrl} target="_blank" rel="noreferrer">
-        <SVGWrapper
+        <S.SVGWrapper
           className="githubCorner"
           width="80"
           height="80"
@@ -25,10 +27,10 @@ function GitHubCorner({ projectUrl }) {
             fill="currentColor"
             className="octo-body"
           />
-        </SVGWrapper>
+        </S.SVGWrapper>
       </a>
-    </Wrapper>
+    </S.Wrapper>
   );
-}
+};
 
 export default GitHubCorner;

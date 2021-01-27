@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import HeadContent from '../src/components/HeadContent';
-import Logo from '../src/components/Logo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import Widget from '../src/components/Widget';
-import Footer from '../src/components/Footer';
+import HeadContent from '../components/HeadContent';
+import Logo from '../components/Logo';
+import QuizBackground from '../components/QuizBackground';
+import QuizContainer from '../components/QuizContainer';
+import Widget from '../components/Widget';
+import Footer from '../components/Footer';
 
-import db from '../db.json';
+import db from '../lib/db';
 
-function Quiz() {
+const Quiz: React.FC = () => {
   const router = useRouter();
 
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setName(router.query.name);
-  }, []);
+    setName(String(router.query.name));
+  }, [router.query.name]);
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -27,7 +27,10 @@ function Quiz() {
         <Logo />
 
         <Widget>
-          <h1>Olá {name}</h1>
+          <h1>
+            Olá
+            {name}
+          </h1>
 
           <p>Ainda estamos construindo esta página</p>
         </Widget>
@@ -36,6 +39,6 @@ function Quiz() {
       </QuizContainer>
     </QuizBackground>
   );
-}
+};
 
 export default Quiz;

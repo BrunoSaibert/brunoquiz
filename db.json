@@ -23,7 +23,7 @@
   ],
   "external": [""],
   "theme": {
-    "colors": {
+    "color": {
       "primary": "#fe5e2e",
       "secondary": "#651fff",
       "mainBg": "#16171b",

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.button`
+export const Container = styled.button`
   width: 100%;
 
   font-size: 14px;
@@ -11,16 +11,16 @@ const Container = styled.button`
 
   cursor: pointer;
   border: 0;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${props => props.theme.borderRadius};
   padding: 0.75rem;
   outline: none;
-  color: ${({ theme }) => theme.colors.contrastText};
-  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${props => props.theme.color.contrastText};
+  background-color: ${props => props.theme.color.secondary};
 
   transition: all 0.3s;
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.gray};
+    background-color: ${props => props.theme.color.gray};
     cursor: not-allowed;
     opacity: 0.8;
   }
@@ -29,5 +29,3 @@ const Container = styled.button`
     opacity: 0.8;
   }
 `;
-
-export default Container;

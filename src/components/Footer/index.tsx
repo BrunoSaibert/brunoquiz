@@ -1,10 +1,8 @@
-import React from 'react';
+import * as S from './styles';
 
-import Container from './styles';
-
-function Footer(props) {
+const Footer: React.VFC = () => {
   return (
-    <Container {...props}>
+    <S.Container>
       <a href="https://www.alura.com.br/">
         <img
           src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg"
@@ -17,8 +15,8 @@ function Footer(props) {
           <span>Imersão React da Alura</span>
         </a>
       </p>
-    </Container>
+    </S.Container>
   );
-}
+};
 
 export default Footer;

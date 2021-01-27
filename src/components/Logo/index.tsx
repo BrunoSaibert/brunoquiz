@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Container from './styles';
+import * as S from './styles';
 
-function Logo() {
+const Logo: React.VFC = () => {
   return (
-    <Container>
+    <S.Container>
       <img src="logo.png" alt="Brunoquiz" />
-    </Container>
+    </S.Container>
   );
-}
+};
 
 export default Logo;

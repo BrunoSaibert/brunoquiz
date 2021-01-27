@@ -1,7 +1,12 @@
-import React from 'react';
 import Head from 'next/head';
 
-function HeadContent({ title, description, bg }) {
+interface HeadProps {
+  title: string;
+  description: string;
+  bg: string;
+}
+
+const HeadContent: React.VFC<HeadProps> = ({ title, description, bg }) => {
   return (
     <Head>
       <title>{title}</title>
@@ -29,6 +34,6 @@ function HeadContent({ title, description, bg }) {
       <meta property="twitter:image" content={bg} />
     </Head>
   );
-}
+};
 
 export default HeadContent;
