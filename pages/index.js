@@ -55,7 +55,7 @@ export default function Home() {
         <Footer />
       </QuizContainer>
 
-      <GitHubCorner projectUrl="https://github.com/BrunoSaibert" />
+      <GitHubCorner projectUrl="https://github.com/BrunoSaibert/brunoquiz" />
     </QuizBackground>
   );
 }
