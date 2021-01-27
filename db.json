@@ -28,6 +28,7 @@
       "secondary": "#651fff",
       "mainBg": "#16171b",
       "contrastText": "#f7f5f6",
+      "gray": "#444548",
       "wrong": "#f44336",
       "success": "#4caf50"
     },

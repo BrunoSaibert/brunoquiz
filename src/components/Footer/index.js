@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import Container from "./styles";
+import Container from './styles';
 
 function Footer(props) {
   return (
@@ -12,7 +12,7 @@ function Footer(props) {
         />
       </a>
       <p>
-        Orgulhosamente criado durante a{" "}
+        Orgulhosamente criado durante a{' '}
         <a href="https://www.alura.com.br/">
           <span>Imersão React da Alura</span>
         </a>

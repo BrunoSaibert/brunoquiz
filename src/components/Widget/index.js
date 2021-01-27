@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import Widget from "./styles";
+import Widget from './styles';
 
 function WidgetComponent({ children, header }) {
   return (

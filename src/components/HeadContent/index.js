@@ -1,4 +1,5 @@
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
 function HeadContent({ title, description, bg }) {
   return (
@@ -25,7 +26,7 @@ function HeadContent({ title, description, bg }) {
       <meta property="twitter:url" content="https://brunoquiz.vercel.app/" />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={bg}></meta>
+      <meta property="twitter:image" content={bg} />
     </Head>
   );
 }
