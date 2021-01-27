@@ -22,6 +22,7 @@ const Container = styled.button`
   &:disabled {
     background-color: ${({ theme }) => theme.colors.gray};
     cursor: not-allowed;
+    opacity: 0.8;
   }
 
   &:hover {
