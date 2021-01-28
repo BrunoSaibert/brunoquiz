@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/jest-axe": "^3.5.1",
+    "jest-axe": "^4.1.0",
     "next": "latest",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
@@ -18,6 +20,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@testing-library/dom": "^7.29.4",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.2",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
@@ -39,12 +45,29 @@
     "husky": "^4.3.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
+    "jest-styled-components": "^7.0.3",
     "jest-watch-typeahead": "^0.6.1",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.1",
     "typescript": "^4.1.3"
   },
   "license": "MIT",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/components/**/*.tsx",
+      "src/__test__/**",
+      "!src/pages/**",
+      "!src/styles/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "yarn type-check && yarn lint ."

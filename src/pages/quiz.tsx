@@ -27,10 +27,7 @@ const Quiz: React.FC = () => {
         <Logo />
 
         <Widget>
-          <h1>
-            Olá
-            {name}
-          </h1>
+          <h1>Olá {name}</h1>
 
           <p>Ainda estamos construindo esta página</p>
         </Widget>
