@@ -1,23 +1,115 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
+// import { useRouter } from 'next/router';
 
 import HeadContent from '../components/HeadContent';
 import Logo from '../components/Logo';
 import QuizBackground from '../components/QuizBackground';
 import QuizContainer from '../components/QuizContainer';
 import Widget from '../components/Widget';
-import Footer from '../components/Footer';
+import Topic from '../components/Topic';
+import Button from '../components/Button';
 
 import db from '../lib/db';
 
-const Quiz: React.FC = () => {
-  const router = useRouter();
+const LoadingWidget: React.FC = () => {
+  return <Widget header="Carregando...">Aguarde um instante</Widget>;
+};
 
-  const [name, setName] = useState('');
+interface QuestionWidgetProps {
+  question: {
+    title: string;
+    description: string;
+    image: string;
+    alternatives: string[];
+  };
+  totalQuestions: number;
+  questionIndex: number;
+  handleNextQuestion: () => void;
+}
+
+const QuestionWidget: React.FC<QuestionWidgetProps> = ({
+  question,
+  totalQuestions,
+  questionIndex,
+  handleNextQuestion,
+}) => {
+  const handleSubmit = (e: SyntheticEvent): void => {
+    e.preventDefault();
+    handleNextQuestion();
+  };
+
+  const questionId = `question__${questionIndex}`;
+
+  return (
+    <Widget
+      header={
+        <h3>
+          Pergunta {questionIndex + 1} de {totalQuestions}
+        </h3>
+      }
+      image={question.image}
+    >
+      <h2>{question.title}</h2>
+      <p>{question.description}</p>
+
+      <form onSubmit={handleSubmit}>
+        {question.alternatives.map((alternative, index) => {
+          const alternativeId = `alternative__${index}`;
+          return (
+            <Topic key={index} as="label" htmlFor={alternativeId}>
+              <input
+                // style={{ display: 'none' }}
+                id={alternativeId}
+                name={questionId}
+                type="radio"
+              />
+              {alternative}
+            </Topic>
+          );
+        })}
+        <Button type="submit">Confirmar</Button>
+      </form>
+    </Widget>
+  );
+};
+
+const screenStates = {
+  LOADING: 'LOADING',
+  RESULT: 'RESULT',
+  QUIZ: 'QUIZ',
+};
+
+const Quiz: React.FC = () => {
+  // const router = useRouter();
+
+  // const [name, setName] = useState('');
+
+  // useEffect(() => {
+  //   setName(String(router.query.name));
+  // }, [router.query.name]);
+
+  const [screenState, setScreenState] = useState(screenStates.LOADING);
+
+  const totalQuestions = db.questions.length;
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const questionIndex = currentQuestion;
+  const question = db.questions[questionIndex];
 
   useEffect(() => {
-    setName(String(router.query.name));
-  }, [router.query.name]);
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ);
+    }, 300);
+  }, []);
+
+  const handleNextQuestion = (): void => {
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < totalQuestions) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setScreenState(screenStates.RESULT);
+    }
+  };
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -26,13 +118,20 @@ const Quiz: React.FC = () => {
       <QuizContainer>
         <Logo />
 
-        <Widget>
-          <h1>Olá {name}</h1>
+        {screenState === screenStates.LOADING && <LoadingWidget />}
 
-          <p>Ainda estamos construindo esta página</p>
-        </Widget>
+        {screenState === screenStates.QUIZ && (
+          <QuestionWidget
+            question={question}
+            totalQuestions={totalQuestions}
+            questionIndex={questionIndex}
+            handleNextQuestion={handleNextQuestion}
+          />
+        )}
 
-        <Footer />
+        {screenState === screenStates.RESULT && (
+          <Widget>Você acertou X questões</Widget>
+        )}
       </QuizContainer>
     </QuizBackground>
   );

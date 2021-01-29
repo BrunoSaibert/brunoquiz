@@ -13,10 +13,18 @@ type Theme = {
   readonly borderRadius: string;
 };
 
+type Question = {
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
+  readonly alternatives: string[];
+};
+
 type DB = {
   readonly bg: string;
   readonly title: string;
   readonly description: string;
+  readonly questions: Question[];
   readonly theme: Theme;
 };
 

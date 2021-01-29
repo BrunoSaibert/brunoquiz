@@ -12,12 +12,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
-  "baseUrl": "./src", // setamos a base da aplicação na pasta src.
-  "paths": {
-    "@/*": ["./*"] // importações que iniciam com @/ serão iniciadas a partir da pasta src que foi definida anteriormente.
-  }
+  "exclude": ["node_modules"]
 }
