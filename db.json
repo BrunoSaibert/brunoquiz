@@ -4,21 +4,61 @@
   "description": "Teste os seus conhecimentos sobre o universo mágico de Harry Potter.",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
-      "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "image": "https://media.giphy.com/media/xT5LMxGzbgJkUZjdte/giphy.gif",
+      "title": "Qual são as maldições imperdoavéis?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Avada Kedavra, Crucio e Estupefaça",
+        "Império, Crucio e Avada Kedavra",
+        "Estupefaça, Crucio e Império"
+      ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
-      "answer": 0,
+      "image": "https://media.giphy.com/media/v7vQ4NdANC07K/giphy.gif",
+      "title": "Qual é o nome do meio de Hermione?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["Granger", "Duerre", "Jean", "Juliana"]
+    },
+    {
+      "image": "https://media.giphy.com/media/fRJHRz3Nu5waY/giphy.gif",
+      "title": "Quem Tom Riddle usa para abrir a Câmara Secreta?",
+      "description": "",
+      "answer": 1,
+      "alternatives": ["Pansy", "Gina", "Hermione"]
+    },
+    {
+      "image": "https://media.giphy.com/media/V2Quy9utov4RO/giphy.gif",
+      "title": "Qual é a posição do Harry no Quadribol?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["Goleiro", "Artilheiro", "Apanhador"]
+    },
+    {
+      "image": "https://cinepop.com.br/wp-content/uploads/2016/11/animaisfantasticos_4.jpg",
+      "title": "Qual é o nome da irmã de Alvo Dumblerdore?",
+      "description": "",
+      "answer": 1,
       "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
+        "Evana Dumblerdore",
+        "Ariana Dumblerdore",
+        "Emma Dumblerdore"
       ]
+    },
+    {
+      "image": "https://media.giphy.com/media/fU9XxqhlksFP2/giphy.gif",
+      "title": "Qual é o nome do Hipogrifo de Hagrid?",
+      "description": "",
+      "answer": 0,
+      "alternatives": ["Bicuço", "Rabicho", "Pontas"]
+    },
+    {
+      "image": "https://media.giphy.com/media/hqBsV4bE9LGz6/giphy.gif",
+      "title": "Qual é o a aula preferida de Neville Longbottom?",
+      "description": "",
+      "answer": 2,
+      "alternatives": ["Vôo", "Poções", "Herbologia"]
     }
   ],
   "external": [""],
@@ -29,7 +69,7 @@
       "mainBg": "#16171b",
       "contrastText": "#f7f5f6",
       "gray": "#444548",
-      "wrong": "#f44336",
+      "wrong": "#ea1c0d",
       "success": "#4caf50"
     },
     "borderRadius": "4px"

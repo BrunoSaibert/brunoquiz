@@ -5,9 +5,9 @@ interface TopicProps {
   htmlFor?: string;
 }
 
-const Topic: React.FC<TopicProps> = ({ children, as, htmlFor }) => {
+const Topic: React.FC<TopicProps> = ({ children, as, htmlFor, ...props }) => {
   return (
-    <S.Topic as={as} htmlFor={htmlFor}>
+    <S.Topic as={as} htmlFor={htmlFor} {...props}>
       {children}
     </S.Topic>
   );

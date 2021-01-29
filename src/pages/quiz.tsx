@@ -8,8 +8,44 @@ import QuizContainer from '../components/QuizContainer';
 import Widget from '../components/Widget';
 import Topic from '../components/Topic';
 import Button from '../components/Button';
+import AlternativesForm from '../components/AlternativesForm';
 
 import db from '../lib/db';
+
+interface ResultProps {
+  results: boolean[];
+  totalQuestions: number;
+}
+
+const ResultWidget: React.FC<ResultProps> = ({ results, totalQuestions }) => {
+  const totalHits = results.reduce((sum, result) => {
+    const isCorrect = result === true;
+
+    if (isCorrect) {
+      return sum + 1;
+    }
+
+    return sum;
+  }, 0);
+
+  return (
+    <Widget header="O seu resultado foi">
+      <p>
+        Você acertou <strong>{totalHits}</strong> de{' '}
+        <strong>{totalQuestions}</strong>
+      </p>
+
+      <ul>
+        {results.map((result, index) => (
+          <li key={index}>
+            #{`00${index + 1}`.slice(-2)} resultado:{' '}
+            <strong>{result ? 'ACERTOU' : 'ERROU'}</strong>
+          </li>
+        ))}
+      </ul>
+    </Widget>
+  );
+};
 
 const LoadingWidget: React.FC = () => {
   return <Widget header="Carregando...">Aguarde um instante</Widget>;
@@ -20,11 +56,13 @@ interface QuestionWidgetProps {
     title: string;
     description: string;
     image: string;
+    answer: number;
     alternatives: string[];
   };
   totalQuestions: number;
   questionIndex: number;
   handleNextQuestion: () => void;
+  handleAddResult: (boolean) => void;
 }
 
 const QuestionWidget: React.FC<QuestionWidgetProps> = ({
@@ -32,10 +70,27 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
   totalQuestions,
   questionIndex,
   handleNextQuestion,
+  handleAddResult,
 }) => {
+  const [selectedAlternative, setSelectedAlternative] = useState<
+    undefined | number
+  >(undefined);
+  const [isQuestionSubmited, setIsQuestionSubmited] = useState(false);
+
+  const isCorrect = selectedAlternative === question.answer;
+  const hasAlternativeSelected = selectedAlternative !== undefined;
+
   const handleSubmit = (e: SyntheticEvent): void => {
     e.preventDefault();
-    handleNextQuestion();
+
+    setIsQuestionSubmited(true);
+
+    setTimeout(() => {
+      handleNextQuestion();
+      handleAddResult(isCorrect);
+      setIsQuestionSubmited(false);
+      setSelectedAlternative(undefined);
+    }, 2000);
   };
 
   const questionId = `question__${questionIndex}`;
@@ -52,31 +107,48 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
       <h2>{question.title}</h2>
       <p>{question.description}</p>
 
-      <form onSubmit={handleSubmit}>
+      <AlternativesForm onSubmit={handleSubmit}>
         {question.alternatives.map((alternative, index) => {
           const alternativeId = `alternative__${index}`;
+          const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+          const isSelected = selectedAlternative === index;
+
           return (
-            <Topic key={index} as="label" htmlFor={alternativeId}>
+            <Topic
+              key={index}
+              as="label"
+              htmlFor={alternativeId}
+              data-selected={isSelected}
+              data-status={isQuestionSubmited && alternativeStatus}
+            >
               <input
-                // style={{ display: 'none' }}
+                style={{ display: 'none' }}
                 id={alternativeId}
                 name={questionId}
+                onChange={() => setSelectedAlternative(index)}
                 type="radio"
+                checked={isSelected}
               />
               {alternative}
             </Topic>
           );
         })}
-        <Button type="submit">Confirmar</Button>
-      </form>
+
+        <Button type="submit" disabled={!hasAlternativeSelected}>
+          Confirmar
+        </Button>
+
+        {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
+        {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+      </AlternativesForm>
     </Widget>
   );
 };
 
 const screenStates = {
   LOADING: 'LOADING',
-  RESULT: 'RESULT',
   QUIZ: 'QUIZ',
+  RESULT: 'RESULT',
 };
 
 const Quiz: React.FC = () => {
@@ -89,9 +161,10 @@ const Quiz: React.FC = () => {
   // }, [router.query.name]);
 
   const [screenState, setScreenState] = useState(screenStates.LOADING);
+  const [results, setResults] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const totalQuestions = db.questions.length;
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
 
@@ -100,6 +173,10 @@ const Quiz: React.FC = () => {
       setScreenState(screenStates.QUIZ);
     }, 300);
   }, []);
+
+  const handleAddResult = (result: boolean): void => {
+    setResults([...results, result]);
+  };
 
   const handleNextQuestion = (): void => {
     const nextQuestion = currentQuestion + 1;
@@ -126,11 +203,12 @@ const Quiz: React.FC = () => {
             totalQuestions={totalQuestions}
             questionIndex={questionIndex}
             handleNextQuestion={handleNextQuestion}
+            handleAddResult={handleAddResult}
           />
         )}
 
         {screenState === screenStates.RESULT && (
-          <Widget>Você acertou X questões</Widget>
+          <ResultWidget results={results} totalQuestions={totalQuestions} />
         )}
       </QuizContainer>
     </QuizBackground>
