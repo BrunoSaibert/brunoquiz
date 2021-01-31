@@ -1,12 +1,12 @@
-import React, { SyntheticEvent, useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import HeadContent from '../components/HeadContent';
 import Logo from '../components/Logo';
 import QuizBackground from '../components/QuizBackground';
 import QuizContainer from '../components/QuizContainer';
-import Widget from '../components/Widget';
+import Widget, { containerVariants } from '../components/Widget';
 import GitHubCorner from '../components/GitHubCorner';
 import Footer from '../components/Footer';
 import Input from '../components/Input';
@@ -20,36 +20,49 @@ const Home: React.FC = () => {
 
   const [name, setName] = useState('');
 
-  const handleSubmit = (e: SyntheticEvent): void => {
-    e.preventDefault();
-
-    router.push(`/quiz?name=${name}`);
+  const handleGoToNextRoute = (route: string): void => {
+    if (name.length > 0) {
+      router.push(`/${route}?name=${name}`);
+    }
   };
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <HeadContent title={db.title} bg={db.bg} description={db.description} />
 
-      <QuizContainer>
+      <QuizContainer
+        as={motion.section}
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         <Logo />
 
-        <Widget header={<h1>{db.title}</h1>}>
+        <Widget
+          as={motion.section}
+          variants={containerVariants}
+          header={<h1>{db.title}</h1>}
+        >
           <p>{db.description}</p>
 
-          <form onSubmit={handleSubmit}>
-            <Input
-              placeholder="Informe seu nome"
-              onChange={e => setName(e.target.value)}
-            />
+          <Input
+            placeholder="Informe seu nome"
+            onChange={e => setName(e.target.value)}
+          />
 
-            <Button type="submit" disabled={name.length === 0}>
-              Jogar
-            </Button>
-          </form>
+          <Button
+            type="button"
+            disabled={name.length === 0}
+            onClick={() => handleGoToNextRoute('quiz')}
+          >
+            Jogar
+          </Button>
         </Widget>
 
-        <Widget>
+        <Widget as={motion.section} variants={containerVariants}>
           <h1>Quizes da Galera</h1>
+
+          <p>Informe seu nome para jogar um quiz da galera</p>
 
           <ul
             style={{
@@ -67,9 +80,13 @@ const Home: React.FC = () => {
 
               return (
                 <li key={index}>
-                  <Link href={`quiz/${projectName}___${githubUser}`}>
-                    <Topic>{`${projectName}/${githubUser}`}</Topic>
-                  </Link>
+                  <Topic
+                    as="span"
+                    data-disabled={name.length === 0}
+                    onClick={() =>
+                      handleGoToNextRoute(`quiz/${projectName}___${githubUser}`)
+                    }
+                  >{`${projectName}/${githubUser}`}</Topic>
                 </li>
               );
             })}

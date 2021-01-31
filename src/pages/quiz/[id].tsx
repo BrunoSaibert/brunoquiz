@@ -24,8 +24,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
   const [projectName, githubUser] = String(dataId).split('___');
 
-  console.log(projectName, githubUser);
-
   const dbExterno = await fetch(
     `https://${projectName}.${githubUser}.vercel.app/api/db`,
   )

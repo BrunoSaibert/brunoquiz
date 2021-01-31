@@ -4,6 +4,11 @@ interface TopicProps {
   as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
   htmlFor?: string;
   href?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+  animate?: any;
+  whileHover?: any;
+  whileTap?: any;
 }
 
 const Topic: React.FC<TopicProps> = ({

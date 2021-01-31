@@ -11,7 +11,7 @@ const Footer: React.VFC = () => {
       </a>
       <p>
         Orgulhosamente criado durante a{' '}
-        <a href="https://www.alura.com.br/">
+        <a href="https://www.alura.com.br/" target="_blank" rel="noreferrer">
           <span>Imersão React da Alura</span>
         </a>
       </p>

@@ -12,9 +12,11 @@ export const SVGWrapper = styled.svg`
   fill: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.contrastText};
   cursor: pointer;
+
   &:hover .octo-arm {
     animation: octocat-wave 560ms ease-in-out;
   }
+
   @keyframes octocat-wave {
     0%,
     100% {
@@ -29,6 +31,7 @@ export const SVGWrapper = styled.svg`
       transform: rotate(10deg);
     }
   }
+
   @media (max-width: 500px) {
     &:hover .octo-arm {
       animation: none;

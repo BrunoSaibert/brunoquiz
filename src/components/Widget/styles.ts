@@ -24,8 +24,9 @@ export const Widget = styled.div`
 
 export const Header = styled.header`
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: space-between;
+
   padding: 18px 32px;
   background-color: ${props => props.theme.colors.primary};
 

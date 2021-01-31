@@ -1,11 +1,12 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import HeadContent from '../components/HeadContent';
 import Logo from '../components/Logo';
 import QuizBackground from '../components/QuizBackground';
 import QuizContainer from '../components/QuizContainer';
-import Widget from '../components/Widget';
+import Widget, { containerVariants } from '../components/Widget';
 import Topic from '../components/Topic';
 import Button from '../components/Button';
 import AlternativesForm from '../components/AlternativesForm';
@@ -33,8 +34,40 @@ const ResultWidget: React.FC<ResultProps> = ({
     return sum;
   }, 0);
 
+  const hitsPercent = Math.round((totalHits * 100) / totalQuestions);
+
+  let hitsGif, hitsText;
+
+  switch (true) {
+    case hitsPercent >= 75:
+      hitsGif = 'gbErpwcLlizvi';
+      hitsText = 'Parabéns! Você é um grande conhecedor do assunto';
+      break;
+    case hitsPercent >= 50:
+      hitsGif = 'pI2paNxecnUNW';
+      hitsText =
+        'Você conhece bem o assunto, que tal se aprofundar um pouco mais?';
+      break;
+    case hitsPercent >= 25:
+      hitsGif = 'RyLtUMBdogHvO';
+      hitsText = 'Você ainda não domina o assunto, mas está no caminho certo';
+      break;
+    default:
+      hitsGif = 'OUwzqE4ZOk5Bm';
+      hitsText = 'Você ainda tem muito o que aprender sobre o assunto';
+  }
+
   return (
-    <Widget header={`${name} seu resultado foi`}>
+    <Widget
+      as={motion.section}
+      variants={containerVariants}
+      header={`${name} seu resultado foi`}
+      image={`https://media.giphy.com/media/${hitsGif}/giphy.gif`}
+    >
+      <h1>
+        <strong>{hitsText}</strong>
+      </h1>
+
       <p>
         Você acertou <strong>{totalHits}</strong> de{' '}
         <strong>{totalQuestions}</strong>
@@ -43,8 +76,10 @@ const ResultWidget: React.FC<ResultProps> = ({
       <ul>
         {results.map((result, index) => (
           <li key={index}>
-            #{`00${index + 1}`.slice(-2)} resultado:{' '}
-            <strong>{result ? 'ACERTOU' : 'ERROU'}</strong>
+            <p>
+              # <strong>{`00${index + 1}`.slice(-2)}</strong> resultado:{' '}
+              <strong>{result ? 'ACERTOU' : 'ERROU :('}</strong>
+            </p>
           </li>
         ))}
       </ul>
@@ -53,7 +88,12 @@ const ResultWidget: React.FC<ResultProps> = ({
 };
 
 const LoadingWidget: React.FC = () => {
-  return <Widget header="Carregando...">Aguarde um instante</Widget>;
+  return (
+    <Widget
+      header="Vamos começar..."
+      image="https://media.giphy.com/media/VseXvvxwowwCc/giphy.gif"
+    ></Widget>
+  );
 };
 
 interface QuestionWidgetProps {
@@ -95,13 +135,16 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
       handleAddResult(isCorrect);
       setSelectedAlternative(undefined);
       handleNextQuestion();
-    }, 1000);
+    }, 2000);
   };
 
   const questionId = `question__${questionIndex}`;
 
   return (
     <Widget
+      as={motion.section}
+      variants={containerVariants}
+      href="/"
       header={
         <h3>
           Pergunta {questionIndex + 1} de {totalQuestions}
@@ -121,16 +164,23 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
           return (
             <Topic
               key={index}
-              as="label"
+              as={motion.label}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               htmlFor={alternativeId}
               data-selected={isSelected}
               data-status={isQuestionSubmited && alternativeStatus}
+              data-disabled={isQuestionSubmited}
             >
               <input
                 style={{ display: 'none' }}
                 id={alternativeId}
                 name={questionId}
-                onChange={() => setSelectedAlternative(index)}
+                onChange={() => {
+                  if (!isQuestionSubmited) {
+                    setSelectedAlternative(index);
+                  }
+                }}
                 type="radio"
                 checked={isSelected}
               />
@@ -139,12 +189,23 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
           );
         })}
 
-        <Button type="submit" disabled={!hasAlternativeSelected}>
+        <Button
+          type="submit"
+          disabled={!hasAlternativeSelected || isQuestionSubmited}
+          as={motion.button}
+          animate={{ scale: hasAlternativeSelected ? 1.1 : 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           Confirmar
         </Button>
 
-        {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-        {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+        {isQuestionSubmited && isCorrect && (
+          <p style={{ textAlign: 'center' }}>Você acertou!</p>
+        )}
+        {isQuestionSubmited && !isCorrect && (
+          <p style={{ textAlign: 'center' }}>Você errou!</p>
+        )}
       </AlternativesForm>
     </Widget>
   );
@@ -175,7 +236,7 @@ const Quiz: React.FC<QuizProps> = ({ db }) => {
   useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 300);
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -200,7 +261,12 @@ const Quiz: React.FC<QuizProps> = ({ db }) => {
     <QuizBackground backgroundImage={db.bg}>
       <HeadContent title={db.title} bg={db.bg} description={db.description} />
 
-      <QuizContainer>
+      <QuizContainer
+        as={motion.section}
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         <Logo />
 
         {screenState === screenStates.LOADING && <LoadingWidget />}

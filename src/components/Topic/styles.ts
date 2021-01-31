@@ -16,4 +16,9 @@ export const Topic = styled.a`
   &:focus {
     opacity: 0.5;
   }
+
+  &[data-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/jest-axe": "^3.5.1",
+    "framer-motion": "^3.2.2-rc.1",
     "jest-axe": "^4.1.0",
     "next": "latest",
     "react": "^16.8.0",

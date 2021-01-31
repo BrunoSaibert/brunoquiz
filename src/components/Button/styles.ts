@@ -22,7 +22,7 @@ export const Container = styled.button`
   &:disabled {
     background-color: ${props => props.theme.colors.secondary};
     cursor: not-allowed;
-    opacity: 0.8;
+    opacity: 0.6;
   }
 
   &:hover {
