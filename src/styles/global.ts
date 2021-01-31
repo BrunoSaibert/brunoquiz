@@ -10,12 +10,12 @@ export default createGlobalStyle<{ theme: ThemeType }>`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
     display: flex;
     flex-direction: column;
     font-family: 'Lato', sans-serif;
 
-    color: ${({ theme }) => theme.color.contrastText};
+    color: ${({ theme }) => theme.colors.contrastText};
   }
   html, body {
     min-height: 100vh;

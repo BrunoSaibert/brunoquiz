@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Widget = styled.div`
   margin-top: 24px;
   margin-bottom: 24px;
-  border: 1px solid ${props => props.theme.color.primary};
-  background-color: ${props => props.theme.color.mainBg};
+  border: 1px solid ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.mainBg};
   border-radius: ${props => props.theme.borderRadius};
   overflow: hidden;
   h1,
@@ -27,7 +27,7 @@ export const Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;
-  background-color: ${props => props.theme.color.primary};
+  background-color: ${props => props.theme.colors.primary};
 
   * {
     margin: 0;
@@ -51,8 +51,8 @@ export const Content = styled.div`
 export const Topic = styled.a`
   outline: 0;
   text-decoration: none;
-  color: ${({ theme }) => theme.color.contrastText};
-  background-color: ${({ theme }) => `${theme.color.primary}40`};
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;

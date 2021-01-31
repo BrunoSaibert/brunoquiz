@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Topic = styled.a`
   outline: 0;
   text-decoration: none;
-  color: ${({ theme }) => theme.color.contrastText};
-  background-color: ${({ theme }) => `${theme.color.primary}40`};
+  color: ${({ theme }) => theme.colors.contrastText};
+  background-color: ${({ theme }) => `${theme.colors.primary}40`};
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;

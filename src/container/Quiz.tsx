@@ -1,5 +1,5 @@
 import React, { useState, useEffect, SyntheticEvent } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import HeadContent from '../components/HeadContent';
 import Logo from '../components/Logo';
@@ -10,14 +10,19 @@ import Topic from '../components/Topic';
 import Button from '../components/Button';
 import AlternativesForm from '../components/AlternativesForm';
 
-import db from '../lib/db';
+import { DB } from '../lib/db';
 
 interface ResultProps {
   results: boolean[];
   totalQuestions: number;
+  name?: string;
 }
 
-const ResultWidget: React.FC<ResultProps> = ({ results, totalQuestions }) => {
+const ResultWidget: React.FC<ResultProps> = ({
+  results,
+  totalQuestions,
+  name,
+}) => {
   const totalHits = results.reduce((sum, result) => {
     const isCorrect = result === true;
 
@@ -29,7 +34,7 @@ const ResultWidget: React.FC<ResultProps> = ({ results, totalQuestions }) => {
   }, 0);
 
   return (
-    <Widget header="O seu resultado foi">
+    <Widget header={`${name} seu resultado foi`}>
       <p>
         Você acertou <strong>{totalHits}</strong> de{' '}
         <strong>{totalQuestions}</strong>
@@ -86,11 +91,11 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
     setIsQuestionSubmited(true);
 
     setTimeout(() => {
-      handleNextQuestion();
-      handleAddResult(isCorrect);
       setIsQuestionSubmited(false);
+      handleAddResult(isCorrect);
       setSelectedAlternative(undefined);
-    }, 2000);
+      handleNextQuestion();
+    }, 1000);
   };
 
   const questionId = `question__${questionIndex}`;
@@ -145,21 +150,20 @@ const QuestionWidget: React.FC<QuestionWidgetProps> = ({
   );
 };
 
+interface QuizProps {
+  db: DB;
+}
+
 const screenStates = {
   LOADING: 'LOADING',
   QUIZ: 'QUIZ',
   RESULT: 'RESULT',
 };
 
-const Quiz: React.FC = () => {
-  // const router = useRouter();
+const Quiz: React.FC<QuizProps> = ({ db }) => {
+  const router = useRouter();
 
-  // const [name, setName] = useState('');
-
-  // useEffect(() => {
-  //   setName(String(router.query.name));
-  // }, [router.query.name]);
-
+  const [name, setName] = useState('');
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -173,6 +177,10 @@ const Quiz: React.FC = () => {
       setScreenState(screenStates.QUIZ);
     }, 300);
   }, []);
+
+  useEffect(() => {
+    setName(String(router.query.name));
+  }, [router.query.name]);
 
   const handleAddResult = (result: boolean): void => {
     setResults([...results, result]);
@@ -208,7 +216,11 @@ const Quiz: React.FC = () => {
         )}
 
         {screenState === screenStates.RESULT && (
-          <ResultWidget results={results} totalQuestions={totalQuestions} />
+          <ResultWidget
+            results={results}
+            totalQuestions={totalQuestions}
+            name={name}
+          />
         )}
       </QuizContainer>
     </QuizBackground>

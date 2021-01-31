@@ -1,12 +1,11 @@
 import db from '../../db.json';
 
 type Theme = {
-  readonly color: {
+  readonly colors: {
     primary: string;
     secondary: string;
     mainBg: string;
     contrastText: string;
-    gray: string;
     wrong: string;
     success: string;
   };
@@ -21,11 +20,12 @@ type Question = {
   readonly alternatives: string[];
 };
 
-type DB = {
+export type DB = {
   readonly bg: string;
   readonly title: string;
   readonly description: string;
   readonly questions: Question[];
+  readonly external: string[];
   readonly theme: Theme;
 };
 

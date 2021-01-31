@@ -14,13 +14,13 @@ export const Container = styled.button`
   border-radius: ${props => props.theme.borderRadius};
   padding: 0.75rem;
   outline: none;
-  color: ${props => props.theme.color.contrastText};
-  background-color: ${props => props.theme.color.secondary};
+  color: ${props => props.theme.colors.contrastText};
+  background-color: ${props => props.theme.colors.secondary};
 
   transition: all 0.3s;
 
   &:disabled {
-    background-color: ${props => props.theme.color.gray};
+    background-color: ${props => props.theme.colors.secondary};
     cursor: not-allowed;
     opacity: 0.8;
   }
