@@ -36,6 +36,8 @@
 
 ![](https://raw.githubusercontent.com/BrunoSaibert/brunoquiz/main/public/screenshot.png)
 
+Veja a [demonstração](https://brunoquiz.brunosaibert.vercel.app/).
+
 ## [](https://github.com/BrunoSaibert/brunoquiz#--sobre-o-projeto) 💻 Sobre o projeto
 
 A aplicação desenvolvida é um quiz principal e uma lista de alguns outros desafios interessantes de outros participantes.
