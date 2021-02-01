@@ -2,24 +2,27 @@ import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import HeadContent from '../components/HeadContent';
 import Logo from '../components/Logo';
-import QuizBackground from '../components/QuizBackground';
-import QuizContainer from '../components/QuizContainer';
-import Widget, { containerVariants } from '../components/Widget';
 import Topic from '../components/Topic';
+import Share from '../components/Share';
 import Button from '../components/Button';
+import HeadContent from '../components/HeadContent';
+import QuizContainer from '../components/QuizContainer';
+import QuizBackground from '../components/QuizBackground';
 import AlternativesForm from '../components/AlternativesForm';
+import Widget, { containerVariants } from '../components/Widget';
 
 import { DB } from '../lib/db';
 
 interface ResultProps {
+  shareRoute: string;
   results: boolean[];
   totalQuestions: number;
   name?: string;
 }
 
 const ResultWidget: React.FC<ResultProps> = ({
+  shareRoute,
   results,
   totalQuestions,
   name,
@@ -61,18 +64,16 @@ const ResultWidget: React.FC<ResultProps> = ({
     <Widget
       as={motion.section}
       variants={containerVariants}
-      header={`${name} seu resultado foi`}
+      header={`${name !== 'undefined' ? name : 'O'} seu resultado foi`}
       image={`https://media.giphy.com/media/${hitsGif}/giphy.gif`}
     >
       <h1>
         <strong>{hitsText}</strong>
       </h1>
-
       <p>
         Você acertou <strong>{totalHits}</strong> de{' '}
         <strong>{totalQuestions}</strong>
       </p>
-
       <ul>
         {results.map((result, index) => (
           <li key={index}>
@@ -83,6 +84,13 @@ const ResultWidget: React.FC<ResultProps> = ({
           </li>
         ))}
       </ul>
+
+      <p>COMPARTILHAR</p>
+
+      <Share
+        url={`https://brunoquiz.brunosaibert.vercel.app/quiz${shareRoute}`}
+        title={`Eu consegui acertar ${totalHits} perguntas. Será que você consegue responder mais?`}
+      />
     </Widget>
   );
 };
@@ -224,6 +232,12 @@ const screenStates = {
 const Quiz: React.FC<QuizProps> = ({ db }) => {
   const router = useRouter();
 
+  let shareRoute = '';
+
+  if (router.query.id) {
+    shareRoute = `/${router.query.id}`;
+  }
+
   const [name, setName] = useState('');
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [results, setResults] = useState([]);
@@ -259,7 +273,12 @@ const Quiz: React.FC<QuizProps> = ({ db }) => {
 
   return (
     <QuizBackground backgroundImage={db.bg}>
-      <HeadContent title={db.title} bg={db.bg} description={db.description} />
+      <HeadContent
+        shareRoute={`/quiz${shareRoute}`}
+        title={db.title}
+        bg={db.bg}
+        description={db.description}
+      />
 
       <QuizContainer
         as={motion.section}
@@ -283,6 +302,7 @@ const Quiz: React.FC<QuizProps> = ({ db }) => {
 
         {screenState === screenStates.RESULT && (
           <ResultWidget
+            shareRoute={shareRoute}
             results={results}
             totalQuestions={totalQuestions}
             name={name}
