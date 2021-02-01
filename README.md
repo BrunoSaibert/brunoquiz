@@ -1,78 +1,139 @@
-# Example app with styled-components
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/BrunoSaibert/brunoquiz?color=%2304D361&style=for-the-badge">
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/zeit/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/BrunoSaibert/brunoquiz?style=for-the-badge">
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+  <a href="https://github.com/BrunoSaibert/brunoquiz/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/BrunoSaibert/brunoquiz?style=for-the-badge">
+  </a>
 
-## Deploy your own
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?style=for-the-badge">
+   <a href="https://github.com/BrunoSaibert/brunoquiz/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/BrunoSaibert/brunoquiz?style=for-the-badge">
+  </a>
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+  <a href="https://brunosaibert.com.br/">
+    <img alt="Feito por Bruno Saibert" src="https://img.shields.io/badge/feito%20por-Bruno%20Saibert-%231b9?style=for-the-badge">
+  </a>
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
 
-## How to use
+</p>
+<h1 align="center" style="padding: 50px; background: #333333;">
+    <img alt="brunoquiz" title="#brunoquiz" src="https://raw.githubusercontent.com/BrunoSaibert/brunoquiz/main/public/logo.png" />
+</h1>
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+<h4 align="center">
+	🏁  BrunoQuiz - Finalizado 🏁
+</h4>
+
+<p align="center">
+ <a href="#-sobre">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-como-executar">Como executar</a> •
+ <a href="#-tecnologias">Tecnologias</a> •
+ <a href="#-autor">Autor</a> •
+ <a href="#-licenca">Licença</a>
+</p>
+
+![](https://raw.githubusercontent.com/BrunoSaibert/brunoquiz/main/public/screenshot.png)
+
+## [](https://github.com/BrunoSaibert/brunoquiz#-sobre) 💻 Sobre o projeto
+
+A aplicação desenvolvida é um quiz principal e uma lista de alguns outros desafios interessantes de outros participantes.
+
+O projeto foi desenvolvido durante o evento **Imersão React e Next.js - V2** da [Alura](https://www.alura.com.br/), com o objetivo de criar uma aplicação web com React e Next.JS, em 5 aulas.
+
+Para o desenvolvimento utilizamos **ReactJS** e **Next.js**, para aprofundar ainda mais meus conhecimentos, também utilizei o **TypeScript**.
+
+---
+
+## [](https://github.com/BrunoSaibert/brunoquiz#-funcionalidades) ⚙️ Funcionalidades
+
+Foi criado um arquivo `db.json` para simular uma API, além de utilizar a funcionalidade de api do Next.js para servir esse arquivo para que outros usuários possam ter acesso.
+
+Na tela inicial o usuário deve informar seu nome para poder jogar o quiz, além de poder selecionar se quer jogar o tema principal ou selecionar um outro na lista de quiz da galera.
+
+Ao responder uma pergunta, o sistema já informa se o usuário acertou ou não a questão e passa para a próxima pergunta.
+
+Ao finalizar o questionário, o usuário recebe uma mensagem personalizada de acordo com o número de acertos, além de conseguir compartilhar seu resultado e desafiar os amigos.
+
+---
+
+## [](https://github.com/BrunoSaibert/brunoquiz#-como-executar) 🚀 Como executar o projeto
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).
+
+#### 🧭 Rodando a aplicação
 
 ```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
+
+# Clone este repositório
+$ git clone git@github.com:BrunoSaibert/brunoquiz.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd brunoquiz
+
+# Instale as dependências
+$ npm install
+# ou
+$ yarn
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+# ou
+$ yarn dev
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+---
 
-### Try it on CodeSandbox
+## [](https://github.com/BrunoSaibert/brunoquiz#-tecnologias) 🛠 Tecnologias
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### Notes
+#### **Aplicação** (**[React](https://reactjs.org/)** + **[Next.js](https://nextjs.org/)** + **[TypeScript](https://www.typescriptlang.org/)**)
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+- **[Styled Components](https://styled-components.com/)**
+- **[Framer Motion](https://www.framer.com/motion/)**
+- **[Next Share](https://react-icons.github.io/react-icons/)**
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
+> Veja o arquivo [package.json](https://github.com/BrunoSaibert/brunoquiz/blob/master/web/package.json)
 
-**components/StyledLink.js**
+#### **Utilitários**
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
+- Editor: **[Visual Studio Code](https://code.visualstudio.com/)**
+- Fonte: **[Lato](https://fonts.google.com/specimen/Lato?query=lato)**
+- Gifs: **[Giphy](https://giphy.com/)**
+- Teste de API: **[Json Viewer](https://github.com/tulios/json-viewer)**
+- Gerar README: **[Markeditor](https://markeditor.netlify.app/)**
 
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
+#### **Hospedagem** (**[Vercel](https://vercel.com/)**)
 
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
+---
 
-  &:hover {
-    color: #40a9ff;
-  }
+## [](https://github.com/BrunoSaibert/brunoquiz#-autor) 👨‍🚀 Autor
 
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
+<a href="https://brunosaibert.com.br/">
+ <img style="border-radius: 50%;" src="https://avatars2.githubusercontent.com/u/40339324?s=460&u=4f5a7b83aa4e018b4eccbeaa1f6a6b8b04e0e4b7&v=4" width="100px;" alt="Bruno Henrique Saibert"/>
+ <br />
+ <sub><b>Bruno Henrique Saibert</b></sub></a>
+ <br />
 
-**pages/index.js**
+Feito com ❤️ por Bruno Henrique Saibert 👋 Entre em contato!
 
-```javascript
-import StyledLink from '../components/StyledLink'
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brunohenriquesaibert/)](https://www.linkedin.com/in/brunohenriquesaibert/)
+[![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=for-the-badge&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/bh_saibert)](https://twitter.com/bh_saibert)
+[![Whatsapp Badge](https://img.shields.io/badge/-Whatsapp-4CA143?style=for-the-badge&labelColor=4CA143&logo=whatsapp&logoColor=white&link=https://api.whatsapp.com/send?phone=5541996758098&text=Olá!)](https://api.whatsapp.com/send?phone=5541996758098&text=Olá!)
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=for-the-badge&logo=Gmail&logoColor=white&link=mailto:brunosaibert@gmail.com)](mailto:brunosaibert@gmail.com)
 
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
+---
 
-</details>
+## [](https://github.com/BrunoSaibert/brunoquiz#-licenca) 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
