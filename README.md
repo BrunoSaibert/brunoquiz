@@ -16,7 +16,6 @@
     <img alt="Feito por Bruno Saibert" src="https://img.shields.io/badge/feito%20por-Bruno%20Saibert-%231b9?style=for-the-badge">
   </a>
 
-
 </p>
 <h1 align="center" style="padding: 50px; background: #333333;">
     <img alt="brunoquiz" title="#brunoquiz" src="https://raw.githubusercontent.com/BrunoSaibert/brunoquiz/main/public/logo.png" />
@@ -27,17 +26,17 @@
 </h4>
 
 <p align="center">
- <a href="#-sobre">Sobre</a> •
- <a href="#-funcionalidades">Funcionalidades</a> •
- <a href="#-como-executar">Como executar</a> •
- <a href="#-tecnologias">Tecnologias</a> •
- <a href="#-autor">Autor</a> •
- <a href="#-licenca">Licença</a>
+ <a href="#--sobre-o-projeto">Sobre</a> •
+ <a href="#-%EF%B8%8F-funcionalidades">Funcionalidades</a> •
+ <a href="#--como-executar-o-projeto">Como executar</a> •
+ <a href="#--tecnologias">Tecnologias</a> •
+ <a href="#--autor">Autor</a> •
+ <a href="#--licença">Licença</a>
 </p>
 
 ![](https://raw.githubusercontent.com/BrunoSaibert/brunoquiz/main/public/screenshot.png)
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-sobre) 💻 Sobre o projeto
+## [](https://github.com/BrunoSaibert/brunoquiz#--sobre-o-projeto) 💻 Sobre o projeto
 
 A aplicação desenvolvida é um quiz principal e uma lista de alguns outros desafios interessantes de outros participantes.
 
@@ -47,7 +46,7 @@ Para o desenvolvimento utilizamos **ReactJS** e **Next.js**, para aprofundar ain
 
 ---
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-funcionalidades) ⚙️ Funcionalidades
+## [](https://github.com/BrunoSaibert/brunoquiz#-%EF%B8%8F-funcionalidades) ⚙️ Funcionalidades
 
 Foi criado um arquivo `db.json` para simular uma API, além de utilizar a funcionalidade de api do Next.js para servir esse arquivo para que outros usuários possam ter acesso.
 
@@ -59,7 +58,7 @@ Ao finalizar o questionário, o usuário recebe uma mensagem personalizada de ac
 
 ---
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-como-executar) 🚀 Como executar o projeto
+## [](https://github.com/BrunoSaibert/brunoquiz#--como-executar-o-projeto) 🚀 Como executar o projeto
 
 ### Pré-requisitos
 
@@ -93,7 +92,7 @@ $ yarn dev
 
 ---
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-tecnologias) 🛠 Tecnologias
+## [](https://github.com/BrunoSaibert/brunoquiz#--tecnologias) 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
@@ -117,7 +116,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ---
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-autor) 👨‍🚀 Autor
+## [](https://github.com/BrunoSaibert/brunoquiz#--autor) 👨‍🚀 Autor
 
 <a href="https://brunosaibert.com.br/">
  <img style="border-radius: 50%;" src="https://avatars2.githubusercontent.com/u/40339324?s=460&u=4f5a7b83aa4e018b4eccbeaa1f6a6b8b04e0e4b7&v=4" width="100px;" alt="Bruno Henrique Saibert"/>
@@ -134,6 +133,6 @@ Feito com ❤️ por Bruno Henrique Saibert 👋 Entre em contato!
 
 ---
 
-## [](https://github.com/BrunoSaibert/brunoquiz#-licenca) 📝 Licença
+## [](https://github.com/BrunoSaibert/brunoquiz#--licença) 📝 Licença
 
-Este projeto esta sobe a licença [MIT](./LICENSE).
+Este projeto esta sobe a licença MIT.
